@@ -5,7 +5,7 @@
 
 # Sobre o Projeto
 
-Escreva aqui um parágrafo contendo uma descrição ou resumo do seu projeto.
+Este trabalho prático tem como objetivo desenvolver uma API para gerenciar pacientes em uma clínica médica, como parte da disciplina de Gerência de Configuração e Evolução de Software. O projeto visa aplicar conceitos teóricos aprendidos, especialmente no contexto de integração contínua, automação de processos e entrega contínua de software, através do desenvolvimento de uma pipeline de implantação.
 
 <h4 align="center"> 
 	🚧  Em desenvolvimento . . .
@@ -14,31 +14,27 @@ Escreva aqui um parágrafo contendo uma descrição ou resumo do seu projeto.
 # Índice/Sumário
 
 * [Sobre](#sobre-o-projeto)
-* [Sumário](#índice/sumário)
 * [Requisitos Funcionais](#requisitos-funcionais)
 * [Tecnologias Usadas](#tecnologias-usadas)
 * [Contribuição](#contribuição)
 * [Autores](#autores)
 * [Licença](#licença)
-* [Agradecimentos](#agradecimentos)
-
 
 # Requisitos Funcionais 
 
-- [x] **Cadastrar Usuário**
-- [x] **Fazer Login**
-- [ ] Matricular em Curso
-- [ ] Cancelar Matricula
-- [ ] Visualizar Notas
-- [ ] Visualizar e Atualizar Informações do Estudante
+- [ ] Cadastrar pacientes
+- [ ] Listar todos os pacientes
+- [ ] Buscar paciente pelo ID
+- [ ] Editar um paciente
+- [ ] Deletar um paciente
+- [ ] Calcular IMC do paciente
+- [ ] Classificar IMC do paciente
 
 # Tecnologias Usadas
 
-- [Flutter](https://flutter.dev/)
-- [Node.js](https://nodejs.org/en/)
-- [React](https://pt-br.reactjs.org/)
-- [React Native](https://reactnative.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
+- [Java](https://www.java.com/pt-BR/)
+- [Spring Boot](https://maven.apache.org/)
+- [Maven](https://maven.apache.org/)
 
 # Contribuição
 
@@ -46,12 +42,8 @@ Leia o arquivo [CONTRIBUTING.md](CONTRIBUTING.md) para saber detalhes sobre o no
 
 # Autores
 
-[Exemplo](https://github.com/testing-library/react-testing-library#contributors)
+- [Nikolas Louret](https://github.com/NikolasLouret)
 
 # Licença
 
 Este projeto está licenciado sob a Licença MIT,  consulte o arquivo [LICENSE.md](LICENSE.md) para mais detalhes.
-
-# Agradecimentos
-
-Seção livre para você agradecer a todos que contribuiram para a execução do seu projeto.
