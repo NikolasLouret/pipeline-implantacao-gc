@@ -2,12 +2,15 @@ package com.nikolaslouret.apiclinicamedica.models;
 
 import com.nikolaslouret.apiclinicamedica.models.dtos.PatientDTO;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -18,17 +21,42 @@ public class Patient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private Long id;
+    private UUID id;
 
+    @NotBlank(message = "O nome do paciente é obrigatório")
+    @Size(max = 100, message = "O nome deve ter no máximo {max} caracteres")
     private String name;
+
+    @NotBlank(message = "O sobrenome do paciente é obrigatório")
+    @Size(max = 100, message = "O sobrenome deve ter no máximo {max} caracteres")
     private String surname;
+
+    @NotNull(message = "O gênero do paciente é obrigatório")
+    @Pattern(regexp = "[M|F]", message = "O gênero deve ser 'M' para masculino ou 'F' para feminino")
     private char gender;
+
+    @NotNull(message = "A data de nascimento do paciente é obrigatória")
+    @Past(message = "A data de nascimento deve ser no passado")
     private LocalDate birthDate;
-    private byte age;
-    private short height;
-    private double weight;
+
+    @NotNull(message = "A idade do paciente é obrigatória")
+    @Positive(message = "A idade do paciente deve ser um número positivo")
+    private Byte age;
+
+    @NotNull(message = "A altura do paciente é obrigatória")
+    @Positive(message = "A altura do paciente deve ser um número positivo")
+    private Short height;
+
+    @NotNull(message = "O peso do paciente é obrigatório")
+    @Positive(message = "O peso do paciente deve ser um número positivo")
+    private Double weight;
+
+    @NotBlank(message = "O CPF do paciente é obrigatório")
+    @Pattern(regexp = "\\d{3}.\\d{3}.\\d{3}-\\d{2}", message = "O CPF deve estar no formato XXX.XXX.XXX-XX")
     private String cpf;
-    private double imc;
+
+    @Positive(message = "O IMC do paciente deve ser um número positivo")
+    private Double imc;
 
     public Patient(PatientDTO dto) {
         this.name = dto.name();
@@ -42,7 +70,7 @@ public class Patient {
         this.age = this.calculateAge();
     }
 
-    public double getIdealWeight() {
+    public Double getIdealWeight() {
         return switch (this.gender) {
             case 'F' -> (62.1 * this.height) - 44.7;
             case 'M' -> (72.7 * this.height) - 58;
@@ -81,18 +109,18 @@ public class Patient {
         throw new IllegalArgumentException("IMC inválido");
     }
 
-    private double calculateIMC() {
+    private Double calculateIMC() {
         return this.weight / Math.pow(this.height, 2);
     }
 
-    private byte calculateAge() {
+    private Byte calculateAge() {
         LocalDate today = LocalDate.now();
         Period period = Period.between(this.birthDate, today);
 
         return (byte) period.getYears();
     }
 
-    private boolean validateCPF() {
+    private Boolean validateCPF() {
         int v1 = 0, v2 = 0;
         int[] cpfNum = this.cpfToArrayNumber(this.cpf);
 
