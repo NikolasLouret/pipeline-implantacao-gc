@@ -1,5 +1,7 @@
 package com.nikolaslouret.apiclinicamedica.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.nikolaslouret.apiclinicamedica.models.dtos.PatientDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -31,8 +33,8 @@ public class Patient {
     private String surname;
 
     @NotNull(message = "O gênero do paciente é obrigatório")
-    @Pattern(regexp = "[M|F]", message = "O gênero deve ser 'M' para masculino ou 'F' para feminino")
-    private char gender;
+    @Pattern(regexp = "[MF]", message = "O gênero deve ser 'M' para masculino ou 'F' para feminino")
+    private String gender;
 
     @NotNull(message = "A data de nascimento do paciente é obrigatória")
     @Past(message = "A data de nascimento deve ser no passado")
@@ -50,14 +52,20 @@ public class Patient {
     @Positive(message = "O peso do paciente deve ser um número positivo")
     private Double weight;
 
+    @JsonIgnore
     @NotBlank(message = "O CPF do paciente é obrigatório")
     @Pattern(regexp = "\\d{3}.\\d{3}.\\d{3}-\\d{2}", message = "O CPF deve estar no formato XXX.XXX.XXX-XX")
+    @Column(unique = true)
     private String cpf;
 
     @Positive(message = "O IMC do paciente deve ser um número positivo")
     private Double imc;
 
     public Patient(PatientDTO dto) {
+
+        if (!this.validateCPF(dto.cpf()))
+            throw new IllegalArgumentException("CPF Inválido");
+
         this.name = dto.name();
         this.surname = dto.surname();
         this.gender = dto.gender();
@@ -69,20 +77,25 @@ public class Patient {
         this.age = this.calculateAge();
     }
 
+    @JsonProperty("idealWeight")
     public Double getIdealWeight() {
-        return switch (this.gender) {
-            case 'F' -> (62.1 * this.height) - 44.7;
-            case 'M' -> (72.7 * this.height) - 58;
+        Double idealWeight = switch (this.gender) {
+            case "F" -> (62.1 * this.height / 100) - 44.7;
+            case "M" -> (72.7 * this.height / 100) - 58;
             default -> throw new IllegalArgumentException("Gênero inválido.");
         };
+
+        return Math.round(idealWeight * 100.0) / 100.0;
     }
 
+    @JsonProperty("cpf")
     public String getObfuscatedCPF() {
-        String cpfSplit = this.cpf.substring(3, 6);
+        String cpfSplit = this.cpf.substring(4, 7);
 
         return "***." + cpfSplit + ".***-**";
     }
 
+    @JsonProperty("IMCStatus")
     public String getIMCStatus() {
         if (this.imc < 17)
             return "Muito abaixo do peso";
@@ -109,7 +122,8 @@ public class Patient {
     }
 
     private Double calculateIMC() {
-        return this.weight / Math.pow(this.height, 2);
+        double imc = this.weight / Math.pow((double) this.height / 100, 2);
+        return Math.round(imc * 100.0) / 100.0;
     }
 
     private Byte calculateAge() {
@@ -119,11 +133,11 @@ public class Patient {
         return (byte) period.getYears();
     }
 
-    private Boolean validateCPF() {
+    private Boolean validateCPF(String cpf) {
         int v1 = 0, v2 = 0;
-        int[] cpfNum = this.cpfToArrayNumber(this.cpf);
+        int[] cpfNum = this.cpfToArrayNumber(cpf);
 
-        for (int i = 0; i < cpfNum.length; i++) {
+        for (int i = 0; i < 9; i++) {
             v1 += cpfNum[i] * (9 - (i % 10));
             v2 += cpfNum[i] * (9 - ((i + 1) % 10));
         }
@@ -132,7 +146,7 @@ public class Patient {
         v2 += v1 * 9;
         v2 = (v2 % 11) % 10;
 
-        return v1 == cpfNum[9] && v2 == cpfNum[10];
+        return v1 == cpfNum[10] && v2 == cpfNum[9];
     }
 
     private int[] cpfToArrayNumber(String cpf) {

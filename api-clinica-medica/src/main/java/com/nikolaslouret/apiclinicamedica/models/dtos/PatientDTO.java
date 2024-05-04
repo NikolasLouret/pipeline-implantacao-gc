@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public record PatientDTO(
         String name,
         String surname,
-        char gender,
+        String gender,
         LocalDate birthDate,
         Short height,
         Double weight,
