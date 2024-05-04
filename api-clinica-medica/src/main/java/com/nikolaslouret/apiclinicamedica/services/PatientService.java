@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class PatientService {
@@ -33,6 +34,7 @@ public class PatientService {
 
     public Patient create(PatientDTO patient) {
         Patient newPatient = new Patient(patient);
+        this.validatePatient(newPatient);
 
         return this.patientRepository.save(newPatient);
     }
@@ -40,25 +42,27 @@ public class PatientService {
     @Transactional
     public Patient update(UUID id, PatientDTO newPatient) {
         Patient patient = this.getById(id);
+        this.validatePatient(patient);
 
-        if (isPatientValid(newPatient)) {
-            patient.setHeight(newPatient.height());
-            patient.setName(newPatient.name());
-            patient.setWeight(newPatient.weight());
-            patient.setGender(newPatient.gender());
-            patient.setSurname(newPatient.surname());
-            patient.setBirthDate(newPatient.birthDate());
+        patient.setHeight(newPatient.height());
+        patient.setName(newPatient.name());
+        patient.setWeight(newPatient.weight());
+        patient.setGender(newPatient.gender());
+        patient.setSurname(newPatient.surname());
+        patient.setBirthDate(newPatient.birthDate());
 
-            return patientRepository.save(patient);
-        }
-
-        throw new ValidationException("Dados do paciente inválidos");
+        return patientRepository.save(patient);
     }
 
-    private boolean isPatientValid(PatientDTO patientDTO) {
-        Set<ConstraintViolation<PatientDTO>> violations = validator.validate(patientDTO);
+    private void validatePatient(Patient patient) {
+        Set<ConstraintViolation<Patient>> violations = validator.validate(patient);
 
-        return violations.isEmpty();
+        if (!violations.isEmpty()) {
+            String errorMessages = violations.stream()
+                    .map(ConstraintViolation::getMessage)
+                    .collect(Collectors.joining(", "));
+            throw new ValidationException(errorMessages);
+        }
     }
 
     public void delete(UUID id) {
