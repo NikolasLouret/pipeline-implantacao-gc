@@ -77,6 +77,11 @@ public class Patient {
         this.age = this.calculateAge();
     }
 
+    public void setWeight(Double weight) {
+        this.weight = weight;
+        this.imc = this.calculateIMC();
+    }
+
     @JsonProperty("idealWeight")
     public Double getIdealWeight() {
         Double idealWeight = switch (this.gender) {
