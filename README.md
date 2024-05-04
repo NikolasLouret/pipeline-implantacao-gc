@@ -22,13 +22,13 @@ Este trabalho prático tem como objetivo desenvolver uma API para gerenciar paci
 
 # Requisitos Funcionais 
 
-- [ ] Cadastrar pacientes
-- [ ] Listar todos os pacientes
-- [ ] Buscar paciente pelo ID
-- [ ] Editar um paciente
-- [ ] Deletar um paciente
-- [ ] Calcular IMC do paciente
-- [ ] Classificar IMC do paciente
+- [X] Cadastrar pacientes
+- [X] Listar todos os pacientes
+- [X] Buscar paciente pelo ID
+- [X] Editar um paciente
+- [X] Deletar um paciente
+- [X] Calcular IMC do paciente
+- [X] Classificar IMC do paciente
 
 # Tecnologias Usadas
 
