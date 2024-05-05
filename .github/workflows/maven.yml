@@ -30,3 +30,6 @@ jobs:
     - name: Build with Maven
       working-directory: ./api-clinica-medica
       run: mvn -B package --file pom.xml
+    - name: Run Unit and Integration Tests
+      working-directory: ./api-clinica-medica
+      run: mvn test
