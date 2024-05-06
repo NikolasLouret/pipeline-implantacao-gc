@@ -40,16 +40,18 @@ public class PatientService {
     }
 
     @Transactional
-    public Patient update(UUID id, PatientDTO newPatient) {
+    public Patient update(UUID id, PatientDTO newPatientDTO) {
         Patient patient = this.getById(id);
-        this.validatePatient(patient);
 
-        patient.setHeight(newPatient.height());
-        patient.setName(newPatient.name());
-        patient.setWeight(newPatient.weight());
-        patient.setGender(newPatient.gender());
-        patient.setSurname(newPatient.surname());
-        patient.setBirthDate(newPatient.birthDate());
+        Patient newPatient = new Patient(newPatientDTO);
+        this.validatePatient(newPatient);
+
+        patient.setHeight(newPatientDTO.height());
+        patient.setName(newPatientDTO.name());
+        patient.setWeight(newPatientDTO.weight());
+        patient.setGender(newPatientDTO.gender());
+        patient.setSurname(newPatientDTO.surname());
+        patient.setBirthDate(newPatientDTO.birthDate());
 
         return patientRepository.save(patient);
     }
