@@ -9,5 +9,5 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(features = "src/test/resources/features", glue={"com.nikolaslouret.apiclinicamedica.steps", "com.nikolaslouret.apiclinicamedica.configs"}, monochrome = true)
-public class CucumberRunner {
+public class CucumberRunnerTest {
 }
