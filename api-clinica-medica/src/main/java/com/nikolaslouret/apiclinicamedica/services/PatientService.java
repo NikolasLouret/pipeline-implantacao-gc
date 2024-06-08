@@ -32,6 +32,10 @@ public class PatientService {
         return this.patientRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Patient not found"));
     }
 
+    public Patient getByCpf(String cpf) {
+        return this.patientRepository.findByCpf(cpf).orElseThrow(() -> new EntityNotFoundException("Patient not found"));
+    }
+
     public Patient create(PatientDTO patient) {
         Patient newPatient = new Patient(patient);
         this.validatePatient(newPatient);
