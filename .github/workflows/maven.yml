@@ -39,7 +39,7 @@ jobs:
         working-directory: ./api-clinica-medica
         run: mvn test -Dtest=CucumberRunnerTest
   
-  Deploy:
+  Deploy-Docker:
     runs-on: ubuntu-latest
     needs: Acceptance-Test
 
