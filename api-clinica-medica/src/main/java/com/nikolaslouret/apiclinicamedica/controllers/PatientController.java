@@ -23,24 +23,37 @@ public class PatientController {
 
     @GetMapping
     public ResponseEntity<List<Patient>> getAllPatients() {
-        return ResponseEntity.ok().body(this.patientService.getAll());
+        try {
+            return ResponseEntity.ok().body(this.patientService.getAll());
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
+        }
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getPatientById(@PathVariable UUID id) {
+    public ResponseEntity<Patient> getPatientById(@PathVariable UUID id) {
         try {
-            Patient patient = this.patientService.getById(id);
-            return ResponseEntity.ok().body(patient);
+            return ResponseEntity.ok().body(this.patientService.getById(id));
+        } catch (EntityNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e);
+        }
+    }
+
+    @GetMapping("/cpf/{cpf}")
+    public ResponseEntity<Patient> getPatientByCpf(@PathVariable String cpf) {
+        try {
+            return ResponseEntity.ok().body(this.patientService.getByCpf(cpf));
         } catch (EntityNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e);
         }
     }
 
     @PostMapping
-    public ResponseEntity<?> createPatient(@Valid @RequestBody PatientDTO patient) {
+    public ResponseEntity<Patient> createPatient(@Valid @RequestBody PatientDTO patient) {
         try {
-            return ResponseEntity.ok().body(this.patientService.create(patient));
-        } catch (EntityNotFoundException | ValidationException | IllegalArgumentException e) {
+            Patient test = this.patientService.create(patient);
+            return ResponseEntity.ok().body(test);
+        } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage(), e);
         }
     }
