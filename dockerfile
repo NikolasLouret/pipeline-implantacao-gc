@@ -4,7 +4,7 @@ FROM amazoncorretto:21
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy the pom.xml and JAR files to the container
+# Copy the pom.xml and mvn files to the container
 COPY api-clinica-medica/pom.xml .
 COPY api-clinica-medica/.mvn .mvn
 COPY api-clinica-medica/mvnw .
@@ -14,6 +14,7 @@ COPY api-clinica-medica/mvnw.cmd .
 COPY api-clinica-medica/src /app/src
 
 # Install the dependencies and compile the project
+RUN chmod +x mvnw
 RUN ./mvnw clean package
 
 # Export the port
