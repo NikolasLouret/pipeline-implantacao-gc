@@ -71,6 +71,15 @@ public class PatientServiceIntegrationTest {
     }
 
     @Test
+    public void testGetPatientByCpf() {
+        Optional<Patient> foundPatient = Optional.ofNullable(patientService.getByCpf(testPatient.getCpf()));
+        assertTrue(foundPatient.isPresent());
+
+        assertEquals(testPatient.getCpf(), foundPatient.get().getCpf());
+        assertEquals("José", foundPatient.get().getName());
+    }
+
+    @Test
     public void testValidationOnCreate() {
         PatientDTO invalidPatientDTO = new PatientDTO(null, "Sobrenome", "M", LocalDate.now(), (short) 1.70, 70.5, "123.456.789-00");
 

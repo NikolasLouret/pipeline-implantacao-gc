@@ -77,6 +77,15 @@ public class PatientControllerIntegrationTest {
     }
 
     @Test
+    public void testGetPatientByCpf() throws Exception {
+        when(patientService.getByCpf(patient.getCpf())).thenReturn(patient);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/patients/cpf/{cpf}", patient.getCpf()))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value(patient.getName()));
+    }
+
+    @Test
     public void testUpdatePatient() throws Exception {
         when(patientService.update(patient.getId(), patientDTO)).thenReturn(patient);
 
