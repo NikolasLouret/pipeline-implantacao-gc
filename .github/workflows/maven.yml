@@ -57,4 +57,4 @@ jobs:
       - name: Push Docker image
         run: docker push ${{ secrets.DOCKER_USERNAME }}/patient-api:latest
       - name: Run Docker container
-        run: docker run -d -p 8080:8080 ${{ secrets.DOCKER_USERNAME }}/patient-api:latest
+        run: docker run -d --name apiclinica -p 8080:8080 --hostname apiclinica ${{ secrets.DOCKER_USERNAME }}/patient-api:latest
