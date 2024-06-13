@@ -60,16 +60,17 @@ jobs:
         run: mvn clean package
         
       - name: Log in to Docker Hub
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3.1.0
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          
-      - name: Build Docker image
-        run: docker build -t patient-api:latest .
-        
-      - name: Tag Docker image
-        run: docker tag patient-api:latest ${{ secrets.DOCKER_USERNAME }}/patient-api:latest
-        
-      - name: Push Docker image
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/patient-api:latest
+
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v5.3.0
+        with:
+          context: ./api-clinica-medica
+          file: ./api-clinica-medica/Dockerfile
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_USERNAME }}/patient-api:${{ github.sha }}
+            ${{ secrets.DOCKER_USERNAME }}/patient-api:latest
