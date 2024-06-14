@@ -74,7 +74,6 @@
 			<version>7.14.0</version>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>

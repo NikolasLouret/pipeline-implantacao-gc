@@ -138,7 +138,7 @@ public class Patient {
         return (byte) period.getYears();
     }
 
-    private Boolean validateCPF(String cpf) {
+    public Boolean validateCPF(String cpf) {
         int v1 = 0, v2 = 0;
         int[] cpfNum = this.cpfToArrayNumber(cpf);
 

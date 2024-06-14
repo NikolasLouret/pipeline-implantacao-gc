@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  api-clinica-medica:
+    build:
+      context: .
+      dockerfile: dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    hostname: apiclinica
