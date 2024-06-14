@@ -1,4 +1,4 @@
-# Título do Projeto
+# API Clinica Médica
 
 ![Capa do Projeto](https://picsum.photos/850/280)
 
@@ -89,6 +89,9 @@ Para utilizar a API, siga os passos abaixo:
    mvn test
    ```
 
+### `Acessar a Documentação:`
+   A API possui documentação Swagger que pode ser acessada em `http://localhost:8080/api-docs`
+
 </details>
 
 ---
@@ -103,6 +106,7 @@ Para utilizar a API, siga os passos abaixo:
 - [JUnit 5](https://junit.org/junit5/): Framework para testes unitários.
 - [Cucumber](https://cucumber.io/): Framework para testes de aceitação.
 - [Docker](https://www.docker.com/): Ferramenta para criação de contêineres e gerenciamento de ambientes.
+- [Swagger](https://swagger.io/): Ferramenta para criação da documentação da API.
 
 ---
 
