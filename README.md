@@ -49,10 +49,10 @@ Foi criada também a classe `PatientDTO` para otimizar a comunicação entre o c
 
 Para utilizar a API, siga os passos abaixo:
 
+### Configurar o Ambiente de Desenvolvimento
+
 <details><summary><b>Mostrar instuções</b></summary>
-
-### `Configurar o Ambiente de Desenvolvimento`
-
+	
 1. Certifique-se de ter o [JDK](https://www.oracle.com/br/java/technologies/downloads/) (Java Development Kit) instalado.
 2. Clone o repositório do GitHub:
    ```sh
@@ -70,17 +70,24 @@ Para utilizar a API, siga os passos abaixo:
    ```sh
    mvn spring-boot:run
    ```
+
+</details>
   
-### `Realizar Testes`
+### Realizar Testes
+
+<details><summary><b>Mostrar instuções</b></summary>
+	
    Para executar testes unitários e de integração, basta executar o seguinte comando:
    ```sh
    mvn test
    ```
 
-### `Acessar a Documentação:`
+</details>
+
+### Acessar a Documentação:
    A API possui documentação Swagger que pode ser acessada em `http://localhost:8080/api-docs`
 
-</details>
+
 
 ## Tecnologias Usadas
    As principais tecnologias, frameworks e bibliotecas utilizadas no desenvolvimento da API incluem:
@@ -107,10 +114,11 @@ Para utilizar a API, siga os passos abaixo:
 
 ## Implantação
 A implantação da API pode ser realizada utilizando [Docker](https://www.docker.com/). Siga os passos abaixo para implantar a aplicação em um ambiente de produção:
+	
+### 1. Construir a imagem Docker:
 
 <details><summary><b>Mostrar instuções</b></summary>
 	
-### 1. Construir a imagem Docker:
 #### `Opção 1: DockerHub`
    
 > É recomendado **utilizar** a imagem do DockerHub
@@ -126,13 +134,23 @@ docker pull nikolaslouret/patient-api
 docker build -t apiclinica .
 ```
 
+</details>
+
 ### 2. Executar o `container` Docker:
+
+<details><summary><b>Mostrar instuções</b></summary>
+	
 &nbsp;&nbsp;&nbsp;&nbsp;A execução do `container` é realizada através do comando:
 ```sh
 docker run -p 8080:8080 apiclinica
 ```
 
+</details>
+
 ### 3. Acessar a API:
+
+<details><summary><b>Mostrar instuções</b></summary>
+
 &nbsp;&nbsp;&nbsp;&nbsp;O acesso da API é realizado através da `url`:
 ```sh
 http://localhost:8080/api/v1/patients
