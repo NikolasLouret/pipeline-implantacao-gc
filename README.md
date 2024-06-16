@@ -49,7 +49,7 @@ Foi criada também a classe `PatientDTO` para otimizar a comunicação entre o c
 
 Para utilizar a API, siga os passos abaixo:
 
-### Configurar o Ambiente de Desenvolvimento
+### 1. Configurar o Ambiente de Desenvolvimento
 
 <details><summary><b>Mostrar instuções</b></summary>
 	
@@ -73,7 +73,7 @@ Para utilizar a API, siga os passos abaixo:
 
 </details>
   
-### Realizar Testes
+### 2. Realizar Testes
 
 <details><summary><b>Mostrar instuções</b></summary>
 	
@@ -84,10 +84,13 @@ Para utilizar a API, siga os passos abaixo:
 
 </details>
 
-### Acessar a Documentação:
-   A API possui documentação Swagger que pode ser acessada em `http://localhost:8080/api-docs`
+### 3. Acessar a Documentação:
 
+<details><summary><b>Mostrar instuções</b></summary>
+	
+A API possui documentação Swagger que pode ser acessada em `http://localhost:8080/api-docs`
 
+</details>
 
 ## Tecnologias Usadas
    As principais tecnologias, frameworks e bibliotecas utilizadas no desenvolvimento da API incluem:
