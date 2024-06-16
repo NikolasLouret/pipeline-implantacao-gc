@@ -2,15 +2,11 @@
 
 ![Capa do Projeto](https://picsum.photos/850/280)
 
----
-
-### Sobre o Projeto
+## Sobre o Projeto
 
 Este trabalho prático tem como objetivo desenvolver uma API para gerenciar pacientes em uma clínica médica, como parte da disciplina de Gerência de Configuração e Evolução de Software. O projeto visa aplicar conceitos teóricos aprendidos, especialmente no contexto de integração contínua, automação de processos e entrega contínua de software, através do desenvolvimento de uma pipeline de implantação.
 
----
-
-### Índice/Sumário
+## Índice/Sumário
 
 * [Sobre o Projeto](#sobre-o-projeto)
 * [Requisitos Funcionais](#requisitos-funcionais)
@@ -24,29 +20,23 @@ Este trabalho prático tem como objetivo desenvolver uma API para gerenciar paci
 * [Autores](#autores)
 * [Licença](#licença)
 
----
-
-### Introdução
+## Introdução
 
 O projeto desenvolvido visa implementar uma API para o gerenciamento de pacientes, utilizando a stack de tecnologias Java, Maven, Spring Boot e outras ferramentas modernas para garantir uma aplicação robusta e eficiente. Este documento detalha as etapas do desenvolvimento, incluindo a configuração do ambiente, o processo de implantação contínua e os testes realizados.
 
----
+## Requisitos Funcionais 
 
-### Requisitos Funcionais 
+:white_check_mark: Cadastrar pacientes.  
+:white_check_mark: Listar todos os pacientes.  
+:white_check_mark: Buscar paciente pelo ID.  
+:white_check_mark: Editar um paciente.  
+:white_check_mark: Deletar um paciente.  
+:white_check_mark: Calcular IMC do paciente.  
+:white_check_mark: Classificar IMC do paciente.  
 
-- :white_check_mark: Cadastrar pacientes
-- :white_check_mark: Listar todos os pacientes
-- :white_check_mark: Buscar paciente pelo ID
-- :white_check_mark: Editar um paciente
-- :white_check_mark: Deletar um paciente
-- :white_check_mark: Calcular IMC do paciente
-- :white_check_mark: Classificar IMC do paciente
+## Arquitetura
 
----
-
-### Arquitetura
-
-A arquitetura do sistema é baseada no padrão MVC (Model-View-Controller), proporcionando uma separação clara entre as diferentes camadas da aplicação. Para a manipulação dos dados, foi criado:
+A arquitetura do sistema é baseada no padrão **MVC** (Model-View-Controller), proporcionando uma separação clara entre as diferentes camadas da aplicação. Para a manipulação dos dados, foi criado:
 
 - **Models**: Representa as entidades da aplicação.
 - **Repositories**: Interface com o banco de dados, utilizando `H2 Database`.
@@ -55,9 +45,7 @@ A arquitetura do sistema é baseada no padrão MVC (Model-View-Controller), prop
 
 Foi criada também a classe `PatientDTO` para otimizar a comunicação entre o client e o servidor.
 
----
-
-### Instruções de Uso
+## Instruções de Uso
 
 Para utilizar a API, siga os passos abaixo:
 
@@ -94,9 +82,7 @@ Para utilizar a API, siga os passos abaixo:
 
 </details>
 
----
-
-### Tecnologias Usadas
+## Tecnologias Usadas
    As principais tecnologias, frameworks e bibliotecas utilizadas no desenvolvimento da API incluem:
 - [Java](https://www.java.com/pt-BR/): Linguagem de programação.
 - [Spring Boot](https://maven.apache.org/): Framework para criação de aplicações standalone.
@@ -108,24 +94,18 @@ Para utilizar a API, siga os passos abaixo:
 - [Docker](https://www.docker.com/): Ferramenta para criação de contêineres e gerenciamento de ambientes.
 - [Swagger](https://swagger.io/): Ferramenta para criação da documentação da API.
 
----
-
-### Código Fonte
+## Código Fonte
    O código fonte do projeto está disponível no repositório GitHub [Pipeline Implantação GC](https://github.com/NikolasLouret/pipeline-implantacao-gc). Para clonar, utilize o seguinte comando:
    ```sh
    git clone https://github.com/NikolasLouret/pipeline-implantacao-gc
    ```
 
----
-
-### Testes
+## Testes
    - **Testes Unitários:** Realizados com [JUnit 5](https://junit.org/junit5/) para garantir que cada componente da aplicação funcione isoladamente.
    - **Testes de Integração:** Também com [JUnit 5](https://junit.org/junit5/), para validar a interação entre diferentes componentes do sistema.
    - **Testes de Aceitação:** Realizados com [Cucumber](https://cucumber.io/), para assegurar que o sistema atenda aos requisitos do usuário final.
 
----
-
-### Implantação
+## Implantação
 A implantação da API pode ser realizada utilizando [Docker](https://www.docker.com/). Siga os passos abaixo para implantar a aplicação em um ambiente de produção:
 
 <details><summary><b>Mostrar instuções</b></summary>
@@ -153,24 +133,18 @@ docker run -p 8080:8080 apiclinica
 ```
 
 ### 3. Acessar a API:
-&nbsp;&nbsp;&nbsp;&nbsp;O acesso da API é realizado através da `url:
+&nbsp;&nbsp;&nbsp;&nbsp;O acesso da API é realizado através da `url`:
 ```sh
 http://localhost:8080/api/v1/patients
 ```
 
 </details>
 
----
-
-### Contribuição
+## Contribuição
 Leia o arquivo [CONTRIBUTING.md](CONTRIBUTING.md) para saber detalhes sobre o nosso código de conduta e o processo de envio de solicitações `pull` (*Pull Request*) para nós.
 
----
-
-### Autores
+## Autores
 - [Nikolas Louret](https://github.com/NikolasLouret)
 
----
-
-### Licença
+## Licença
 Este projeto está licenciado sob a Licença MIT,  consulte o arquivo [LICENSE.md](LICENSE.md) para mais detalhes.
